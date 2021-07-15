@@ -7,7 +7,6 @@ module.exports = {
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
-    "gatsby-plugin-material-ui",
 
     {
       resolve: "gatsby-source-filesystem",
@@ -17,23 +16,22 @@ module.exports = {
       },
       __key: "images",
     },
+    {
+      resolve: `gatsby-theme-material-ui`,
+      options: {
+        webFontsConfig: {
+          fonts: {
+            google: [
+              {
+                family: `Montserrat`,
+                variants: [`300`, `400`, `500`],
+              },
+            ],
+          },
+        },
+      },
+    },
   ],
 };
 
-// `gatsby-plugin-material-ui`,
-
-// {
-//   resolve: `gatsby-theme-material-ui`,
-//   options: {
-//     webFontsConfig: {
-//       fonts: {
-//         google: [
-//           {
-//             family: `Montserrat`,
-//             variants: [`300`, `400`, `500`],
-//           },
-//         ],
-//       },
-//     },
-//   },
-// },
+// "gatsby-plugin-material-ui",
