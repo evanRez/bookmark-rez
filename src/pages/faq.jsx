@@ -4,7 +4,7 @@ import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Arrow from "../images/icon-arrow.svg";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   app: {
     display: "flex",
   },

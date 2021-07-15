@@ -3,12 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Logo from "../images/logo-bookmark.svg";
 import Grid from "@material-ui/core/Grid";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   bgStyle: {
     backgroundColor: "hsl(231, 69%, 60%)",
     minHeight: "60vh",
