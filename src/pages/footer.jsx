@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   bgStyle: {
     backgroundColor: "hsl(231, 69%, 60%)",
     minHeight: "60vh",
@@ -47,6 +47,10 @@ const useStyles = makeStyles(() => ({
     marginLeft: "0.6rem",
     padding: "7px 28px",
     fontWeight: "600",
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      margin: "1em auto",
+    },
   },
 
   btn__contactUs: {
@@ -54,6 +58,36 @@ const useStyles = makeStyles(() => ({
     fontSize: ".85rem",
     fontWeight: "600",
     padding: "0 25px",
+  },
+  ftrBlock: {
+    display: "flex",
+    gap: "38px",
+    justifyContent: "flex-end",
+    paddingRight: "4%",
+    marginTop: "0",
+    [theme.breakpoints.down("sm")]: {
+      textAlign: "center",
+    },
+  },
+  drkFtr: {
+    backgroundColor: "hsl(229, 31%, 21%)",
+    minHeight: "12vh",
+    alignContent: "center",
+    padding: "2rem 2.5rem",
+    [theme.breakpoints.down("sm")]: {
+      textAlign: "center",
+    },
+  },
+  grdItem: {
+    margin: "1em",
+  },
+  lilIcon: {
+    height: "2.2rem",
+    width: "2.2rem",
+    color: "#fff",
+    [theme.breakpoints.down("sm")]: {
+      margin: "0 1em",
+    },
   },
 }));
 
@@ -101,47 +135,24 @@ const Footer = () => {
         </div>
       </div>
 
-      <Grid
-        container
-        style={{
-          backgroundColor: "hsl(229, 31%, 21%)",
-          minHeight: "12vh",
-          alignContent: "center",
-          padding: "2rem 2.5rem",
-        }}
-      >
-        <Grid item xs={12} md={2}>
+      <Grid container className={classes.drkFtr}>
+        <Grid item xs={12} md={2} className={classes.grdItem}>
           <img
             style={{ alignItems: "center" }}
             src="https://bookmark-tediko.netlify.app/images/logo-bookmark-white.svg?5f5c0b755ecfffc1468063404877de02"
           />
         </Grid>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={8} className={classes.grdItem}>
           <Button className={classes.btn__header}>Features</Button>
           <Button className={classes.btn__header}>Pricing</Button>
           <Button className={classes.btn__header}>Contact</Button>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={2}
-          style={{
-            display: "flex",
-            gap: "38px",
-            justifyContent: "flex-end",
-            paddingRight: "4%",
-            marginTop: "0",
-          }}
-        >
+        <Grid item xs={12} md={2} className={classes.grdItem}>
           <a href="#">
-            <FacebookIcon
-              style={{ height: "2.2rem", width: "2.2rem", color: "#fff" }}
-            />
+            <FacebookIcon className={classes.lilIcon} />
           </a>
           <a href="#">
-            <TwitterIcon
-              style={{ height: "2.2rem", width: "2.2rem", color: "#fff" }}
-            />
+            <TwitterIcon className={classes.lilIcon} />
           </a>
         </Grid>
       </Grid>

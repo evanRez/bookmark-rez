@@ -12,6 +12,11 @@ import Attribution from "./attribution";
 const paddingGutter = {
   background: "#fff",
   overflow: "hidden",
+  display: "flex",
+  minHeight: "100vh",
+  flexDirection: "column",
+  border: "none",
+  boxSizing: "border-box",
 };
 
 // markup

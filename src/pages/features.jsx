@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Tab1 from "../images/illustration-features-tab-1.svg";
+import Tab2 from "../images/illustration-features-tab-2.svg";
+import Tab3 from "../images/illustration-features-tab-3.svg";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     paddingTop: "2rem",
@@ -16,6 +18,9 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     margin: "75px 180px 75px 180px",
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      margin: "75px 0px 75px 0px",
+    },
   },
   title: {
     width: "100%",
@@ -42,20 +47,27 @@ const useStyles = makeStyles(() => ({
     justifyContent: "space-around",
     marginLeft: "auto",
     marginRight: "auto",
-    paddingBottom: "30px",
     borderBottom: "1px solid #e3e4e8",
     fontWeight: "500",
     color: "hsl(229, 8%, 60%)",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+      textAlign: "center",
+    },
   },
   featureLink: {
     fontSize: "1rem",
+    paddingBottom: "1rem",
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
-  featureImg: {
-    display: "none",
+  featureLinkActive: {
+    fontSize: "1rem",
+    paddingBottom: ".9rem",
+    borderBottom: "3px solid red",
   },
-  featureDesc: {
-    display: "none",
-  },
+
   featureDescActive: {
     alignItems: "flex-start",
     display: "flex",
@@ -72,6 +84,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: "600",
     fontSize: "1rem",
     marginBottom: "5%",
+    marginBottom: "1em",
   },
   contentContainer: {
     marginTop: "5.2rem",
@@ -94,20 +107,57 @@ const useStyles = makeStyles(() => ({
     margin: "0 auto",
   },
   featuredImg: {
-    postion: "absolute",
+    position: "absolute",
+    zIndex: "1",
+    margin: "0% 0% 0% -11%",
   },
   featuredBlob: {
-    postion: "absolute",
-    width: "100%",
-    height: "104%",
+    width: "120%",
+    height: "120%",
+    margin: "20% 50% 50% -40%",
+    position: "absolute",
     backgroundColor: "hsl(231, 69%, 60%)",
-    margin: "-48% 50% 50% -20%",
-    borderBottomRightRadius: "170px",
+    borderBottomRightRadius: "180px",
+    borderTopRightRadius: "180px",
+  },
+  ftBlock: {
+    margin: "12% 5% 0px 50px",
+    display: "flex",
+    flexDirection: "column",
+    [theme.breakpoints.down("sm")]: {
+      textAlign: "center",
+      width: "75%",
+      margin: "auto",
+      alignItems: "center",
+    },
   },
 }));
 
+const featureArr = [
+  {
+    head: "Simple Bookmarking",
+    title: "Bookmark in one click",
+    desc: "Organize your bookmarks however you like. Our simple drag-and-drop interface gives you complete control over how you manage your favourite sites.",
+    img: Tab1,
+  },
+  {
+    head: "Speedy Searching",
+    title: " Intelligent search",
+    desc: "Our powerful search feature will help you find saved sites in no time at all. No need to trawl through all of your bookmarks.",
+    img: Tab2,
+  },
+  {
+    head: "Easy Sharing",
+    title: "Share your bookmarks",
+    desc: "Easily share your bookmarks and collections with others. Create a shareable link that you can send at the click of a button.",
+    img: Tab3,
+  },
+];
+
 const FeatureSection = () => {
   const classes = useStyles();
+
+  const [active, setActive] = useState(featureArr[0]);
 
   return (
     <div style={{ marginBottom: "15%" }}>
@@ -119,7 +169,7 @@ const FeatureSection = () => {
             </Typography>
           </div>
           <div>
-            <Typography className={classes.titlePara} variant="p">
+            <Typography className={classes.titlePara}>
               Our aim is to make it quick and easy for you to access your
               favourite websites. Your bookmarks sync between your devices so
               you can access them on the go.
@@ -128,40 +178,51 @@ const FeatureSection = () => {
         </div>
       </div>
       <div className={classes.featureLinksContainer}>
-        <Typography className={classes.featureLink}>
+        <Typography
+          className={
+            active == featureArr[0]
+              ? classes.featureLinkActive
+              : classes.featureLink
+          }
+          onClick={() => setActive(featureArr[0])}
+        >
           Simple Bookmarking
         </Typography>
-        <Typography className={classes.featureLink}>
+        <Typography
+          className={
+            active == featureArr[1]
+              ? classes.featureLinkActive
+              : classes.featureLink
+          }
+          onClick={() => setActive(featureArr[1])}
+        >
           Speedy Searching
         </Typography>
-        <Typography className={classes.featureLink}>Easy Sharing</Typography>
+        <Typography
+          className={
+            active == featureArr[2]
+              ? classes.featureLinkActive
+              : classes.featureLink
+          }
+          onClick={() => setActive(featureArr[2])}
+        >
+          Easy Sharing
+        </Typography>
       </div>
 
       <Grid container spacing={5} className={classes.contentContainer}>
         <Grid item xs={12} md={6} className={classes.featuredImgContainer}>
-          <img src={Tab1} className={classes.featuredImg} />
+          <img src={active.img} className={classes.featuredImg} />
           <div className={classes.featuredBlob} />
         </Grid>
         <Grid item xs={12} md={6} className={classes.featureDescActive}>
-          <div
-            style={{
-              margin: "12% 5% 0px 50px",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
+          <div className={classes.ftBlock}>
             <Typography variant="h4" className={classes.featureTitle}>
-              Bookmark in one click
+              {active.title}
             </Typography>
 
-            <Typography
-              style={{ marginBottom: "10px" }}
-              variant="p"
-              className={classes.featureDescPara}
-            >
-              Organize your bookmarks however you like. Our simple drag-and-drop
-              interface gives you complete control over how you manage your
-              favourite sites.
+            <Typography className={classes.featureDescPara}>
+              {active.desc}
             </Typography>
 
             <Button
@@ -173,38 +234,6 @@ const FeatureSection = () => {
             </Button>
           </div>
         </Grid>
-
-        <div className={classes.featureDesc}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h4" className={classes.featureDesc}>
-              Intelligent search
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <div>
-              <Typography variant="p" className={classes.featureImg}>
-                Our powerful search feature will help you find saved sites in no
-                time at all. No need to trawl through all of your bookmarks.
-              </Typography>
-            </div>
-
-            <Button>More Info</Button>
-          </Grid>
-        </div>
-        <div className={classes.featureDesc}>
-          <Grid item xs={12} md={6} className={classes.featureDesc}>
-            <Typography variant="h4" className={classes.featureDesc}>
-              Share your bookmarks
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Typography variant="p" className={classes.featureImg}>
-              Easily share your bookmarks and collections with others. Create a
-              shareable link that you can send at the click of a button.
-            </Typography>
-            <Button>More Info</Button>
-          </Grid>
-        </div>
       </Grid>
     </div>
   );

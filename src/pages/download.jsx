@@ -12,7 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import bgDots from "../images/bg-dots.svg";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     paddingTop: "2rem",
@@ -23,6 +23,9 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     margin: "75px 180px 75px 180px",
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      margin: "75px 0px 75px 0px",
+    },
   },
   title: {
     width: "100%",
@@ -53,6 +56,11 @@ const useStyles = makeStyles(() => ({
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "50%",
+      padding: "inherit",
+      paddingTop: "4em",
+    },
   },
   btn__download: {
     textTransform: "none",
@@ -61,6 +69,16 @@ const useStyles = makeStyles(() => ({
     fontSize: ".9rem",
     fontWeight: "600",
     width: "100%",
+  },
+  grdContBlock: {
+    display: "flex",
+    justifyContent: "center",
+    height: "80vh",
+    width: "80%",
+    margin: "auto",
+    [theme.breakpoints.down("sm")]: {
+      height: "100%",
+    },
   },
 }));
 
@@ -86,19 +104,24 @@ const DownloadSection = () => {
           </Typography>
         </div>
       </div>
-      <div
-        style={{ display: "flex", justifyContent: "center", height: "80vh" }}
-      >
+      <div className={classes.grdContBlock}>
         <Grid container spacing={3} style={{ maxWidth: "90%" }}>
-          {browserArr.map((browser) => {
+          {browserArr.map((browser, idx) => {
             return (
-              <Grid item xs={12} md={4} style={{ alignSelf: browser.style }}>
+              <Grid
+                key={idx}
+                item
+                sm={12}
+                md={4}
+                style={{ alignSelf: browser.style }}
+              >
                 <div className={classes.cardLayout}>
                   <div>
                     <img
                       src={browser.image}
                       title={browser.name}
                       style={{ height: "100px" }}
+                      alt={browser.name}
                     />
                     <CardContent>
                       <Typography

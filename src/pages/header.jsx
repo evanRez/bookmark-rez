@@ -18,8 +18,9 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
-      display: "none",
+    display: "none",
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
     },
   },
   title: {
@@ -32,15 +33,24 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     width: "100%",
     justifyContent: "flex-end",
+    [theme.breakpoints.down("sm")]: {
+      diplay: "none",
+    },
   },
   contentContainer: {
     marginTop: "5rem",
     padding: "2% 4%",
+    display: "flex",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
   },
   heroImg: {
     position: "absolute",
     zIndex: "2",
-    // visibility: "hidden",
+    [theme.breakpoints.down("sm")]: {
+      position: "inherit",
+    },
   },
   heroBlueBlob: {
     position: "absolute",
@@ -50,6 +60,10 @@ const useStyles = makeStyles((theme) => ({
     zIndex: "1",
     backgroundColor: "hsl(231, 69%, 60%)",
     borderBottomLeftRadius: "170px",
+    [theme.breakpoints.down("sm")]: {
+      margin: "-50% 20% 20% 35%",
+      height: "60%",
+    },
   },
 
   headerTitle: {
@@ -74,6 +88,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "0.6rem",
     padding: "7px 28px",
     fontWeight: "600",
+    [theme.breakpoints.down("sm")]: {
+      diplay: "none",
+    },
   },
   btn__hero: {
     textTransform: "none",
@@ -88,6 +105,18 @@ const useStyles = makeStyles((theme) => ({
   },
   imgGridItem: {
     position: "relative",
+
+    [theme.breakpoints.down("sm")]: {
+      order: "1",
+    },
+  },
+  textGrdItem: {
+    [theme.breakpoints.down("sm")]: {
+      order: "2",
+      textAlign: "center",
+      width: "75%",
+      margin: "auto",
+    },
   },
 }));
 
@@ -133,7 +162,7 @@ export default function HeaderComponent() {
         </Toolbar>
       </AppBar>
       <Grid container className={classes.contentContainer}>
-        <Grid item xs={12} md={6}>
+        <Grid item sm={12} md={6} className={classes.textGrdItem}>
           <Typography variant="h2" className={classes.headerTitle}>
             A Simple Bookmark Manager
           </Typography>
@@ -156,7 +185,7 @@ export default function HeaderComponent() {
             </Typography>
           </Button>
         </Grid>
-        <Grid item xs={12} md={6} className={classes.imgGridItem}>
+        <Grid item sm={12} md={6} className={classes.imgGridItem}>
           <img className={classes.heroImg} src={Hero} />
           <div className={classes.heroBlueBlob} />
         </Grid>
