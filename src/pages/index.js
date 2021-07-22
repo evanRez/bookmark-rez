@@ -17,6 +17,9 @@ const paddingGutter = {
   flexDirection: "column",
   border: "none",
   boxSizing: "border-box",
+  bottom: "0",
+  margin: "0",
+  padding: "0",
 };
 
 // markup

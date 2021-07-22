@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -6,9 +6,12 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import CloseIcon from "@material-ui/icons/Close";
 import Grid from "@material-ui/core/Grid";
 import Hero from "../images/illustration-hero.svg";
 import Logo from "../images/logo-bookmark.svg";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import TwitterIcon from "@material-ui/icons/Twitter";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
     [theme.breakpoints.down("sm")]: {
       display: "flex",
+      margin: "0",
+      transform: "scale(1.8)",
+    },
+  },
+  tlbr: {
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      justifyContent: "space-between",
     },
   },
   title: {
@@ -28,13 +39,16 @@ const useStyles = makeStyles((theme) => ({
   },
   barStyle: {
     padding: "10px 25px",
+    [theme.breakpoints.down("sm")]: {
+      padding: "0",
+    },
   },
   btnContainer: {
     display: "flex",
     width: "100%",
     justifyContent: "flex-end",
     [theme.breakpoints.down("sm")]: {
-      diplay: "none",
+      display: "none",
     },
   },
   contentContainer: {
@@ -50,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: "2",
     [theme.breakpoints.down("sm")]: {
       position: "inherit",
+      width: "100%",
     },
   },
   heroBlueBlob: {
@@ -74,6 +89,9 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "0.015em",
     fontSize: "3rem",
     color: "hsl(229, 31%, 21%)",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.8rem",
+    },
   },
   headerPara: {
     marginTop: "1rem",
@@ -89,7 +107,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "7px 28px",
     fontWeight: "600",
     [theme.breakpoints.down("sm")]: {
-      diplay: "none",
+      display: "none",
     },
   },
   btn__hero: {
@@ -102,6 +120,9 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "0.03em",
     padding: "15px 22px",
     backgroundColor: "#f9fafa",
+    [theme.breakpoints.down("sm")]: {
+      marginRight: "0",
+    },
   },
   imgGridItem: {
     position: "relative",
@@ -114,25 +135,113 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       order: "2",
       textAlign: "center",
-      width: "75%",
       margin: "auto",
     },
+  },
+  mobileNav__wrapper: {
+    display: "none",
+  },
+  mobileNav__wrapper_active: {
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "hsl(229, 31%, 21%)",
+    position: "fixed",
+    height: "100vh",
+    marginTop: "-14%",
+    paddingTop: "35%",
+    width: "103vw",
+    marginLeft: "-3%",
+    opacity: "94%",
+    zIndex: "3",
+    alignItems: "center",
+  },
+  mobileNav__list: {
+    display: "flex",
+    flexDirection: "column",
+    color: "#FFF",
+    transform: "scale(1.5)",
+    marginTop: "3rem",
+  },
+  mobileNav__btn: {
+    color: "#fff",
+    borderTop: ".5px solid",
+    borderBottom: ".5px solid",
+    borderRadius: "0",
+    padding: "1em 5em",
+    letterSpacing: "0.15em",
+  },
+  mobileNav__SignIn: {
+    color: "#fff",
+    marginTop: "1rem",
+    padding: "1em 5em",
+    letterSpacing: "0.15em",
+    border: "2px solid",
+  },
+  closeButton: {
+    zIndex: "3",
+    color: "#fff",
+    display: "flex",
+    margin: "0",
+    transform: "scale(1.8)",
+  },
+  mobileNav__social: {
+    color: "#fff",
+    position: "fixed",
+    bottom: "0",
+  },
+  lilIcon: {
+    color: "#fff",
+    transform: "scale(2)",
+    margin: "1em",
   },
 }));
 
 export default function HeaderComponent() {
   const classes = useStyles();
+  const [active, setActive] = useState(false);
 
   return (
     <div className={classes.root}>
+      <div
+        className={
+          active
+            ? classes.mobileNav__wrapper_active
+            : classes.mobileNav__wrapper
+        }
+      >
+        <div className={classes.mobileNav__list}>
+          <Button className={classes.mobileNav__btn}>Features</Button>
+          <Button className={classes.mobileNav__btn}>Pricing</Button>
+          <Button className={classes.mobileNav__btn}>Contact</Button>
+          <Button className={classes.mobileNav__SignIn} variant="outlined">
+            Contact
+          </Button>
+        </div>
+        <div className={classes.mobileNav__social}>
+          <a href="#">
+            <FacebookIcon className={classes.lilIcon} />
+          </a>
+          <a href="#">
+            <TwitterIcon className={classes.lilIcon} />
+          </a>
+        </div>
+      </div>
       <AppBar
         position="static"
         color="#fff"
         elevation={0}
         className={classes.barStyle}
       >
-        <Toolbar>
-          <img src={Logo} />
+        <Toolbar className={classes.tlbr}>
+          {active ? (
+            <img
+              style={{ alignItems: "center", zIndex: "4" }}
+              src="https://bookmark-tediko.netlify.app/images/logo-bookmark-white.svg?5f5c0b755ecfffc1468063404877de02"
+              alt="white logo img"
+            />
+          ) : (
+            <img src={Logo} alt="logo" />
+          )}
 
           <div className={classes.btnContainer}>
             <Button className={classes.btn__header} color="hsl(229, 31%, 21%)">
@@ -153,11 +262,12 @@ export default function HeaderComponent() {
             </Button>
           </div>
           <IconButton
-            className={classes.menuButton}
+            className={active ? classes.closeButton : classes.menuButton}
             color="inherit"
             aria-label="menu"
+            onClick={() => setActive(!active)}
           >
-            <MenuIcon />
+            {active ? <CloseIcon /> : <MenuIcon />}
           </IconButton>
         </Toolbar>
       </AppBar>

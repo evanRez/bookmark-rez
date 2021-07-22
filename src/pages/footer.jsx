@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "hsl(231, 69%, 60%)",
     minHeight: "60vh",
     color: "#fff",
-    width: "100vw",
+    width: "100%",
 
     // color: theme.palette.common.white,
   },
@@ -25,6 +25,11 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "38%",
     marginLeft: "auto",
     marginRight: "auto",
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: "100%",
+      marginTop: "2rem",
+      marginBottom: "1rem",
+    },
   },
   superScript: {
     letterSpacing: "0.33rem",
@@ -39,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "0.015em",
     fontSize: "2rem",
     color: "#fff",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.5rem",
+    },
   },
   btn__header: {
     color: "#fff",
@@ -52,12 +60,26 @@ const useStyles = makeStyles((theme) => ({
       margin: "1em auto",
     },
   },
+  formTextField: {
+    backgroundColor: "#fff",
+    borderRadius: "5px",
+    width: "300px",
+    marginLeft: "-8%",
+    [theme.breakpoints.down("sm")]: {
+      margin: "auto",
+      marginBottom: "1rem",
+    },
+  },
 
   btn__contactUs: {
     textTransform: "none",
     fontSize: ".85rem",
     fontWeight: "600",
     padding: "0 25px",
+    [theme.breakpoints.down("sm")]: {
+      padding: ".5em",
+      width: "80%",
+    },
   },
   ftrBlock: {
     display: "flex",
@@ -74,17 +96,16 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "12vh",
     alignContent: "center",
     padding: "2rem 2.5rem",
+    marginTop: "1em",
     [theme.breakpoints.down("sm")]: {
       textAlign: "center",
     },
-  },
-  grdItem: {
-    margin: "1em",
   },
   lilIcon: {
     height: "2.2rem",
     width: "2.2rem",
     color: "#fff",
+    margin: "0 1em",
     [theme.breakpoints.down("sm")]: {
       margin: "0 1em",
     },
@@ -108,6 +129,7 @@ const Footer = () => {
         <div
           style={{
             display: "flex",
+            flexWrap: "wrap",
             justifyContent: "center",
             paddingBottom: "6%",
           }}
@@ -117,12 +139,7 @@ const Footer = () => {
               id="outlined-basic"
               label="Enter your email address"
               variant="outlined"
-              style={{
-                backgroundColor: "#fff",
-                borderRadius: "5px",
-                width: "300px",
-                marginLeft: "-8%",
-              }}
+              className={classes.formTextField}
             />
           </form>
           <Button

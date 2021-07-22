@@ -66,12 +66,19 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1rem",
     paddingBottom: ".9rem",
     borderBottom: "3px solid red",
+    [theme.breakpoints.down("sm")]: {
+      paddingBottom: "0",
+      marginBottom: ".9rem",
+    },
   },
 
   featureDescActive: {
     alignItems: "flex-start",
     display: "flex",
     flexFlow: "column",
+    [theme.breakpoints.down("sm")]: {
+      order: "2",
+    },
   },
   featureTitle: {
     color: "hsl(229, 31%, 21%)",
@@ -90,9 +97,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "5.2rem",
     display: "flex",
     flexWrap: "no-wrap",
-    marginLeft: "6%",
-    marginRight: "4%",
+    marginLeft: "auto",
+    marginRight: "auto",
     maxWidth: "90%",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+      justifyContent: "center",
+    },
   },
   btn__hero: {
     textTransform: "none",
@@ -105,11 +116,23 @@ const useStyles = makeStyles((theme) => ({
   featuredImgContainer: {
     position: "relative",
     margin: "0 auto",
+    [theme.breakpoints.down("sm")]: {
+      order: "1",
+      position: "relative",
+      display: "flex",
+      marginBottom: "5rem",
+      margin: "0",
+    },
   },
   featuredImg: {
     position: "absolute",
     zIndex: "1",
     margin: "0% 0% 0% -11%",
+    [theme.breakpoints.down("sm")]: {
+      position: "relative",
+      margin: "auto",
+      width: "100%",
+    },
   },
   featuredBlob: {
     width: "120%",
@@ -119,6 +142,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "hsl(231, 69%, 60%)",
     borderBottomRightRadius: "180px",
     borderTopRightRadius: "180px",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      height: "70%",
+      margin: "20% 0% 0% -30%",
+    },
   },
   ftBlock: {
     margin: "12% 5% 0px 50px",

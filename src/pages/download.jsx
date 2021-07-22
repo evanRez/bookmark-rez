@@ -56,11 +56,6 @@ const useStyles = makeStyles((theme) => ({
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
-    [theme.breakpoints.down("sm")]: {
-      width: "50%",
-      padding: "inherit",
-      paddingTop: "4em",
-    },
   },
   btn__download: {
     textTransform: "none",
@@ -105,7 +100,7 @@ const DownloadSection = () => {
         </div>
       </div>
       <div className={classes.grdContBlock}>
-        <Grid container spacing={3} style={{ maxWidth: "90%" }}>
+        <Grid container spacing={3} style={{ justifyContent: "center" }}>
           {browserArr.map((browser, idx) => {
             return (
               <Grid
