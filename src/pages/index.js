@@ -1,12 +1,35 @@
 import * as React from "react";
-import { ThemeProvider } from "@material-ui/core/styles";
-import { theme } from "./theme";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import HeaderComponent from "./header";
 import FeatureSection from "./features";
 import DownloadSection from "./download";
 import Faq from "./faq";
 import Footer from "./footer";
 import Attribution from "./attribution";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "hsl(231, 69%, 60%)",
+    },
+    secondary: {
+      main: "hsl(0, 94%, 66%)",
+    },
+    default: {
+      main: "hsl(229, 8%, 60%)",
+    },
+    inherit: {
+      main: "hsl(229, 31%, 21%)",
+    },
+    background: {
+      default: "#fff",
+    },
+  },
+  typography: {
+    fontFamily: ["Rubik", "sans-serif"].join(","),
+    htmlFontSize: 18,
+  },
+});
 
 //styles
 const paddingGutter = {
